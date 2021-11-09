@@ -1,0 +1,94 @@
+{% extends "Cuerpo.html" %}
+
+{% block title %}El Culinario ~ {{recetas.nombre}} ~ Cocina para el sujeto independiente{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .receta, .ingredientes, .pasos, .calif {margin: 1em auto;}
+        .imagen {margin-top: -3.5em; margin-left: 3.5em; width: 45%;}
+    </style>
+{% endblock %}
+
+{% block paginaActiva %}
+    <a class="nav-link opciones" href="/">Inicio</a>
+    <a class="nav-link opciones active" href="#">Ver Recetas</a>
+    <a class="nav-link opciones" href="../Crear_Receta">Crear Receta</a>
+{% endblock %}
+
+{% block contenido %}
+<div class="container-md receta">
+    <h4 class="display-5 titulo">{{recetas.nombre}}</h4>
+    <p><i class="fas fa-star" style="color: darkorange"></i> &nbsp; {{recetas.calificacion}}<br><i class="fas fa-user"></i> &nbsp; {{recetas.autor}}<br></p>
+
+    <div class="d-flex">
+        <div class="descripcion w-50">
+            <p class="desc">
+                <i class="fas fa-fire"></i> <b>Dificultad: </b> {{recetas.dificultad}} <br>
+                <i class="fas fa-clock"></i> <b>Tiempo de preparación: </b> {{recetas.tiempo}} <br>
+                <i class="fas fa-balance-scale"></i> <b>Calorias: </b> {{recetas.calorias}} <br>
+                <i class="fas fa-money-bill-wave"></i> <b>Precio: </b> $ {{recetas.costo}} MXN (aprox.) <br><br>
+                {{recetas.desc}}
+            </p>
+        </div>
+        <div class="imagen">
+            <img src="{{recetas.imagen}}" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+<div class="container-md ingredientes">
+    <h4 class="display-6 titulo">Ingredientes</h4>
+    <ul class="list-group">
+        {% for ingredientes in ingredientesProporcion %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ingredientes[0]}}
+            <span class="badge bg-primary rounded-pill">{{ingredientes[1]}}</span>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+<div class="container-md pasos">
+    <h4 class="display-6 titulo">¡Empezamos!</h4>
+    <ol class="list-group list-group-numbered list-group-flush">
+        {% for paso in pasos %}
+        <li class="list-group-item bg-light">
+            {{paso}}
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+<div class="container-md calif">
+    <h4 class="display-4 text-center titulo">¿Qué tal te parecio?</h4>
+    <div class="text-center">
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <input type="radio" id="calif" name="califi" value="1">
+                <i class="fas fa-star" style="color: darkorange; font-size: 3em"></i>
+                <p class="text-center">1</p>
+            </div>
+            <div class="row">
+                <input type="radio" id="calif" name="califi" value="2">
+                <i class="fas fa-star" style="color: darkorange; font-size: 3em"></i>
+                <p class="text-center">2</p>
+            </div>
+            <div class="row">
+                <input type="radio" id="calif" name="califi" value="3">
+                <i class="fas fa-star" style="color: darkorange; font-size: 3em"></i>
+                <p class="text-center">3</p>
+            </div>
+            <div class="row">
+                <input type="radio" id="calif" name="califi" value="4">
+                <i class="fas fa-star" style="color: darkorange; font-size: 3em"></i>
+                <p class="text-center">4</p>
+            </div>
+            <div class="row">
+                <input type="radio" id="calif" name="califi" value="5">
+                <i class="fas fa-star" style="color: darkorange; font-size: 3em"></i>
+                <p class="text-center">5</p>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <span class="text-center"><p><i class="fas fa-star" style="color: darkorange; font-size: 3em"></i> &nbsp; 4.99</p></span>
+     -->
+</div>
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends "Cuerpo.html" %}
+
+{% block title %}El Culinario ~ Cocina para el sujeto independiente{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .receta, .ingredientes, .pasos {margin: 1em auto;}
+        .imagen {margin-left: 3.5em; width: 45%;} /*SI COLOCAS EL INPUT FILE, BORRA EL WIDTH O HABRA PDO*/
+    </style>
+{% endblock %}
+
+{% block paginaActiva %}
+    <a class="nav-link opciones" href="/">Inicio</a>
+    <a class="nav-link opciones" href="#">Ver Recetas</a>
+    <a class="nav-link opciones active" href="Crear_Receta">Crear Receta</a>
+{% endblock %}
+
+{% block contenido %}
+<form action="Crear_Receta" method="POST" id="crearrecetanueva">
+    <div class="container-md receta">
+        <h4 class="display-6 text-center titulo">¡Comparte con la comunidad!</h4>        
+        <div class="mb-3">
+            <label for="InputFood" class="form-label">Nombre del platillo</label>
+            <input type="text" class="form-control" id="InputFood" name="platillo" required>
+            <div id="helpFood" class="form-text"><b>Recuerda, </b>es el nombre con el cual la gente podra encontra tu receta.</div>
+        </div>
+        <div class="mb-3">
+            <label for="Inputautor" class="form-label">Autor</label>
+            <input type="text" class="form-control" id="Inputautor" name="autor" required>
+            <div id="helpAutor" class="form-text">Ingresa tu nombre o el del autor de esta receta.</div>
+        </div>
+        <div class="d-flex">
+            <div class="descripcion w-50">
+                <p class="desc" style="margin-bottom: 0">
+                    <i class="fas fa-fire"></i> <b>Dificultad: </b>
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="dificultadI" name="dificultad" required>
+                            <option selected disabled>Seleccione una dificultad</option>
+                            <option value="Muy facil">Muy facil</option>
+                            <option value="Facil">Facil</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Complicada">Complicada</option>
+                            <option value="Extrema">Extrema</option>
+                        </select>
+                    </div>
+                    <i class="fas fa-clock"></i> <b>Tiempo de preparación: </b>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" min="1" aria-label="Minutos" id="tiempoI" name="tiempo" required>
+                        <span class="input-group-text">minutos</span>
+                    </div>
+                    <i class="fas fa-balance-scale"></i> <b>Calorias: </b> 
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" min="0" aria-label="Calorias" id="calI" name="calorias" required>
+                        <span class="input-group-text">cal.</span>
+                    </div>
+                    <i class="fas fa-money-bill-wave"></i> <b>Precio: </b>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" min="0" aria-label="Precio ($ MXN M.N.)" id="precioI" name="costo" required>
+                        <span class="input-group-text">MXN</span>
+                    </div>
+                    <br><br>
+                    <i class="fas fa-pen"></i> <b>Descripción: </b> 
+                    <div class="form-group">
+                        <textarea class="form-control" id="exampleFormControlDes" rows="3" placeholder="Escribe una descripción sobre la receta o platillo" name="desc" required></textarea>
+                    </div>
+                </p>
+            </div>
+            <div class="imagen">
+                <i class="far fa-image"></i> <b>Imagen del platillo: </b> 
+                <div class="input-group mb-3">
+                    <!--input type="file" id="form-control-file" class="btn btn-info" id="imagenPlatillo" required-->
+                    <input type="text" class="form-control" id="imagenPlatillo" placeholder="Ingrese la URL de la imagen" name="imagen" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-md ingredientes">
+        <h4 class="display-6 titulo">Ingredientes</h4>
+        <div class="container">
+            <div class="row">
+                <button type="button" id="btnAgregaIng" class="btn btn-outline-secondary mb-3" onclick="agregarInputIngrediente()"><i class="fas fa-plus-circle"></i> <b>Agregar ingrediente</b></button>
+            </div>
+        </div>
+        <!-- Ingredientes -->
+        <div id="contenedor_ingredientes">
+            <div class="Ingrediente mb-3">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Cantidad o Porción" id="porcion1" name="porcion1" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Ingrediente" id="ingrediente1" name="ingrediente1" required>
+                    </div>
+                </div>
+            </div>
+            <div class="Ingrediente mb-3">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Cantidad o Porción" id="porcion2" name="porcion2" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Ingrediente" id="ingrediente2" name="ingrediente2" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Ingedientes -->
+    </div>
+    <div class="container-md pasos">
+        <h4 class="display-6 titulo">Instrucciones</h4>
+        <div class="container">
+            <div class="row">
+                <button type="button" id="btnAgregaPaso" class="btn btn-outline-secondary mb-3" onclick="agregarInputPasos()"><i class="fas fa-plus-circle"></i> <b>Agregar el siguiente paso</b></button>
+            </div>
+        </div>
+        <ol id="contenedor_pasos" class="list-group list-group-numbered list-group-flush">
+        <!-- Pasos -->
+            <li class="list-group-item bg-light">
+                <div class="Paso mb-3">
+                    <input type="text" class="form-control" placeholder="Escriba los pasos a seguir" id="paso1" name="paso1" required>
+                </div>
+            </li>
+        <!-- Pasos -->
+            <li class="list-group-item bg-light">
+                <div class="Paso mb-3">
+                    <input type="text" class="form-control" placeholder="Escriba los pasos a seguir" id="paso2" name="paso2" required>
+                </div>
+            </li>
+        <!-- Pasos -->
+        </ol>
+    </div>
+    <div class="container-md envio">
+       <h4 class="display-6 text-center mb-3 titulo">¡Compartenos a todos tu receta!</h4>
+        <div class="d-flex justify-content-center mb-4">
+            <button type="submit" id="envioDatos" class="btn btn-primary">¡Publicar Receta!</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block Script %}
+<script>
+    let ingredientes = 2;
+    let pasos = 2;
+
+    function agregarInputIngrediente() {
+        contenedor = document.getElementById("contenedor_ingredientes");
+        ingredientes++;
+
+        contenedor.innerHTML += 
+           `<div class="Ingrediente mb-3">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Cantidad o Porción" id="porcion${ingredientes}" name="porcion${ingredientes}" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Ingrediente" id="ingrediente${ingredientes}" name="ingrediente${ingredientes}" required>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function agregarInputPasos() {
+        contenedor = document.getElementById("contenedor_pasos");
+        pasos++;
+
+        contenedor.innerHTML += 
+        `<li class="list-group-item bg-light">
+            <div class="Paso mb-3">
+                <input type="text" class="form-control" placeholder="Escriba los pasos a seguir" id="paso${pasos}" name="paso${pasos}" required>
+            </div>
+        </li>`;
+    }
+
+</script>
+{% endblock %}

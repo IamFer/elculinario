@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Culinario ~ Cocina para el sujeto independiente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&display=swap');
+
+        .logo {margin: 0 0 0 1.5em;}
+        .logoname {font-family: 'Cinzel Decorative', cursive; font-weight: bolder;}
+        .logodesc {margin-top: -8px; font-size: 12px;}
+        .opciones {margin: 0 1.5em;}
+        
+        .selector_recetas {padding: 1em; box-sizing: border-box;}
+        .recetas, .seleccion {padding: 1em; background: ; box-sizing: border-box;}
+        .descripcion {padding-bottom: 10px; box-sizing: border-box;}
+        
+        .mensaje {padding: 2em 0; box-sizing: border-box;}
+        
+    </style>
+</head>
+<body class="bg-light">
+    <div id="Contenedor_Superior">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <div class="logo d-flex flex-column">
+                    <a class="logoname navbar-brand" href="#" style="text-align: center; color: #547c4b;">El CULinario</a>
+                    <span class="logodesc" style="color: #547c4b;">Cocina para el sujeto independiente</span>
+                </div>
+                <div class="collapse navbar-collapse justify-content-center">
+                  <div class="navbar-nav">
+                    <a class="nav-link opciones active" aria-current="page" href="/">Inicio</a>
+                    <a class="nav-link opciones" href="Recetas">Ver Recetas</a>
+                    <a class="nav-link opciones" href="Crear_Recetas">Crear Receta</a>
+                  </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="Contenedor_Principal">
+        <div class="container-md recetas">
+            <h1 class="display-5 text-center">Descubra estas ultimas recetas compartidas</h1>
+            <div class="d-flex selector_recetas justify-content-around">
+               <!-- Recetas -->
+                <div class="card" style="width: 18rem;">
+                    <img src="https://images.unsplash.com/photo-1567190562512-6b787f7dc2aa" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Clasico Pastel de Queso</h5>
+                        <p class="card-text text-center"><i class="fas fa-user"></i> Fernando</p>
+                        <div class="d-flex descripcion justify-content-around">
+                            <span><i class="far fa-clock"></i> 63 min.</span>
+                            <span><i class="fas fa-star" style="color: darkorange"></i> &nbsp; 4.99</span>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <a href="VerReceta" class="btn btn-primary">Leer más...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de Recetas -->
+            </div>
+        </div>
+        <div class="bg-dark text-white mensaje">
+            <h5 class="display-6 text-center">¡Comparte tus conocimientos!</h5>
+            <div class="container-md d-flex align-items-center">
+                <div class="w-50">
+                    <div class="container">
+                        <div class="row">
+                                <div class="col text-center">
+                                <p class="mensaje">
+                                    Comparte tus recetas con la comunidad que ha decidido ser independiente, ayuda a muchos que no tienen conocimientos en cocina, intenta nuevas comidas sanas y deliciosas. 
+                                </p>
+                                <a href="Crear_Recetas" class="btn btn-success">Compartir mis recetas</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-4" style="margin-left: 8em">
+                        <img src="https://images.unsplash.com/photo-1492739159057-7d1896b3c63f" class="img-fluid rounded">
+                    </div>
+                
+            </div>
+        </div>
+        <div class="container-md seleccion">
+            <h1 class="display-5 text-center">Las recetas mas gustadas</h1>
+            <div class="d-flex selector_recetas justify-content-around">
+               <!-- Recetas -->
+                <div class="card" style="width: 18rem;">
+                    <img src="https://images.unsplash.com/photo-1574519902712-98154e2b1b50" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Crema de Algo's</h5>
+                        <p class="card-text text-center"><i class="fas fa-user"></i> Jaime</p>
+                        <div class="d-flex descripcion justify-content-around">
+                            <span><i class="far fa-clock"></i> 33 min.</span>
+                            <span><i class="fas fa-star" style="color: darkorange"></i> &nbsp; 5.00</span>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <a href="#" class="btn btn-primary">Leer más...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de Recetas -->
+            </div>
+        </div>
+    </div>
+<footer class="bg-dark text-center text-white">
+  <div class="container p-4">
+  <h5 class="display-6">Sígueme en:</h5>
+    <section class="mb-4">
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/iamfermc" role="button"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/iamFerMC" role="button"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/iamfermc/" role="button"><i class="fab fa-instagram"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://fermtzz72.tumblr.com/" role="button"><i class="fab fa-tumblr"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/IamFer/" role="button"><i class="fab fa-github"></i></a>
+    </section>
+    <section class="mb-4">
+        <p>
+        El Culinario es una pagina dedicada a que los usuarios puedan compartir recetas con la comunidad de manera gratuita. <br>
+        Encuentra y comparte la inspiración culinaria diaria para la comunidad que ha decidido independizarse y no tiene conocimiento <br>
+        sobre como cocinar. Descubra recetas, ingredientes, basados en la comida que le gusta a usted y a los amigos. <br>
+        <b>Desarrollo de Software con Python.</b>
+        </p>
+    </section>
+  </div>
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"> © 2021 ~ Hecho por Fer MC
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/73502adb1d.js"></script> <!-- Don't steel, it's mine -->
+</body>
+</html>

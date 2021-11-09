@@ -1,0 +1,93 @@
+{% extends "Cuerpo.html" %}
+
+{% block title %}El Culinario ~ Cocina para el sujeto independiente{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .selector_recetas {padding: 1em; box-sizing: border-box;}
+        .recetas, .seleccion {padding: 1em; background: ; box-sizing: border-box;}
+        .descripcion {padding-bottom: 10px; box-sizing: border-box;}
+        .mensaje {padding: 2em 0; box-sizing: border-box;}
+    </style>
+{% endblock %}
+
+{% block paginaActiva %}
+    <a class="nav-link opciones active" href="/">Inicio</a>
+    <a class="nav-link opciones" href="#">Ver Recetas</a>
+    <a class="nav-link opciones" href="Crear_Receta">Crear Receta</a>
+{% endblock %}
+
+{% block contenido %}
+<div class="container-md recetas">
+    <h1 class="display-5 text-center">Descubra estas ultimas recetas compartidas</h1>
+    <div class="d-flex selector_recetas justify-content-around">
+       <!-- Recetas -->
+       {% for laReceta in recetas %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{laReceta.imagen}}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{laReceta.nombre}}</h5>
+                <p class="card-text text-center"><i class="fas fa-user"></i> {{laReceta.autor}}</p>
+                <div class="d-flex descripcion justify-content-around">
+                    <span><i class="far fa-clock"></i> {{laReceta.tiempo}}</span>
+                    <span><i class="fas fa-star" style="color: darkorange"></i> &nbsp; {{laReceta.calificacion}}</span>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <a href="Receta/{{laReceta.id}}" class="btn btn-primary">Leer más...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Fin de Recetas -->
+    </div>
+</div>
+<div class="bg-dark text-white mensaje">
+    <h5 class="display-6 text-center">¡Comparte tus conocimientos!</h5>
+    <div class="container-md d-flex align-items-center">
+        <div class="w-50">
+            <div class="container">
+                <div class="row">
+                        <div class="col text-center">
+                        <p class="mensaje">
+                            Comparte tus recetas con la comunidad que ha decidido ser independiente, ayuda a muchos que no tienen conocimientos en cocina, intenta nuevas comidas sanas y deliciosas. 
+                        </p>
+                        <a href="Crear_Receta" class="btn btn-success">Compartir mis recetas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-left: 8em">
+            <img src="https://images.unsplash.com/photo-1492739159057-7d1896b3c63f" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+<div class="container-md seleccion">
+    <h1 class="display-5 text-center">Las recetas mas gustadas</h1>
+    <div class="d-flex selector_recetas justify-content-around">
+       <!-- Recetas -->
+       {% for laReceta in recetas %}
+            {% if laReceta.calificacion|int >= 4|int %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{laReceta.imagen}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{laReceta.nombre}}</h5>
+                    <p class="card-text text-center"><i class="fas fa-user"></i> {{laReceta.autor}}</p>
+                    <div class="d-flex descripcion justify-content-around">
+                        <span><i class="far fa-clock"></i> {{laReceta.tiempo}}</span>
+                        <span><i class="fas fa-star" style="color: darkorange"></i> &nbsp; {{laReceta.calificacion}}</span>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <a href="Receta/{{laReceta.id}}" class="btn btn-primary">Leer más...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+        <!-- Fin de Recetas -->
+    </div>
+</div>
+{% endblock %}
